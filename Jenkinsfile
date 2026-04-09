@@ -90,8 +90,14 @@ pipeline {
     always {
         emailext(
             subject: "Pipeline ${currentBuild.result}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: "Build ${currentBuild.result}. Check: ${env.BUILD_URL}",
-            to: 'your-email@gmail.com'
+            body: """
+                <h2>Build ${currentBuild.result}</h2>
+                <p>Job: ${env.JOB_NAME}</p>
+                <p>Build Number: ${env.BUILD_NUMBER}</p>
+                <p>Check: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+            """,
+            to: 'pandiyarajan.veeramohandoss@impigertech.com',
+            mimeType: 'text/html'
         )
     }
 }
