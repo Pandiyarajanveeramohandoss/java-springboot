@@ -87,13 +87,12 @@ pipeline {
     }
 
     post {
-        always {
-            emailext(
-                subject: "Pipeline ${currentBuild.result}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "Build ${currentBuild.result}. Check: ${env.BUILD_URL}",
-                to: 'your-email@gmail.com',
-                credentialsId: 'gmail-creds'
-            )
-        }
+    always {
+        emailext(
+            subject: "Pipeline ${currentBuild.result}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "Build ${currentBuild.result}. Check: ${env.BUILD_URL}",
+            to: 'your-email@gmail.com'
+        )
     }
+}
 }
